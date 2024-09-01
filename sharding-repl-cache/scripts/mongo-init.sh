@@ -3,11 +3,11 @@ docker compose exec -it mongo-config-server mongosh --port 27017 <<EOF
 rs.initiate({_id: "config_server", configsvr: true, version: 1, members: [ { _id: 0, host : 'mongo-config-server:27017' } ] })
 EOF
 
-docker compose exec -it mongo-shard-01 mongosh --port 27018 <<EOF
+docker compose exec -it mongo-shard-01-a mongosh --port 27018 <<EOF
 rs.initiate({_id: "shard-01", version: 1, members: [ { _id: 0, host : "mongo-shard-01-a:27018" }, { _id: 1, host : "mongo-shard-01-b:27018" }, { _id: 2, host : "mongo-shard-01-c:27018" }, ] })
 EOF
 
-docker compose exec -it mongo-shard-02 mongosh --port 27019 <<EOF
+docker compose exec -it mongo-shard-02-a mongosh --port 27019 <<EOF
 rs.initiate({_id: "shard-02", version: 1, members: [ { _id: 0, host : "mongo-shard-02-a:27019" }, { _id: 1, host : "mongo-shard-02-b:27019" }, { _id: 2, host : "mongo-shard-02-c:27019" }, ] })
 EOF
 
